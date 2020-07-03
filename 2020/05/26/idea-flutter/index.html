@@ -79,8 +79,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -123,8 +121,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -141,9 +137,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -352,6 +346,28 @@
 <div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
+      
+        <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '32e430bc3cc2d1c5de0087b85df4438eb2fe2ef4',
+        repo: 'lroyia.github.io',
+        owner: 'lroyia',
+        admin: ["lroyia"],
+        id: '2020-05-26T17-18-32',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+      
     </div>
   </div>
 </article>
@@ -394,22 +410,6 @@
 
   
 
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://blog.lroyia.top/2020/05/26/idea-flutter/",
-  owner: 'lroyia',
-  repo: 'lroyia.github.io',
-  oauth: {
-    client_id: 'e3a84a39fecb309f7292',
-    client_secret: '32e430bc3cc2d1c5de0087b85df4438eb2fe2ef4',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
   
 
 
