@@ -44,63 +44,69 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #3dbbf5">
-</div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			<img src="/to-the-moon.jpg" class="js-avatar">
-		</a>
-		<hgroup>
-			<h1 class="header-author"><a href="/">lroyia</a></h1>
-		</hgroup>
-		
-
-		<nav class="header-menu">
-			<ul>
+	<div class="overlay" style="background: #3dbbf5">
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img src="/to-the-moon.jpg" class="js-avatar">
+			</a>
+			<hgroup>
+				<h1 class="header-author"><a href="/">
+						lroyia
+					</a></h1>
+			</hgroup>
 			
-		<li><a href="/">主页</a></li>
-		
-			</ul>
-		</nav>
-		<nav class="header-smart-menu">
-    		
-		
-		<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-		
-		
-		</nav>
-		<nav class="header-nav">
-			<div class="social">
-				
-		<a class="github" target="_blank" href="https://github.com/Lroyia" title="github"><i
-				class="icon-github"></i></a>
-		
-		<a class="bilibili" target="_blank" href="https://space.bilibili.com/1568833" title="bilibili"><i
-				class="icon-bilibili"></i></a>
-		
-			</div>
-		</nav>
-		<nav class="header-music">
-			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1431292823&auto=1&height=66"></iframe>
-		</nav>
-	</header>
-	<script>
-		var sUserAgent = navigator.userAgent.toLowerCase();
-		var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-		var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-		var bIsMidp = sUserAgent.match(/midp/i) == "midp";
-		var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-		var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-		var bIsAndroid = sUserAgent.match(/android/i) == "android";
-		var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-		var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-		if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-			var el = document.getElementsByClassName('header-music');
-			el[0].remove();
-		}
-	</script>
-</div>
+
+					<nav class="header-menu">
+						<ul>
+							
+								<li><a href="/">
+										主页
+									</a></li>
+								
+						</ul>
+					</nav>
+					<nav class="header-smart-menu">
+						
+							
+								<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">
+									所有文章
+								</a>
+								
+									
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Lroyia"
+									title="github"><i class="icon-github"></i></a>
+								
+								<a class="bilibili" target="_blank" href="https://space.bilibili.com/1568833"
+									title="bilibili"><i class="icon-bilibili"></i></a>
+								
+						</div>
+					</nav>
+					<nav class="header-music">
+						<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=220 src="//music.163.com/outchain/player?type=0&id=5446005867&auto=1&height=430"></iframe>
+					</nav>
+		</header>
+		<script>
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+			var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+			var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+			var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+			var bIsAndroid = sUserAgent.match(/android/i) == "android";
+			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+			if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+				var el = document.getElementsByClassName('header-music');
+				el[0].remove();
+			}
+		</script>
+	</div>
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
@@ -154,6 +160,168 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-个人爬虫经验总结（二）- 请求与解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/">个人爬虫经验总结（二）- 请求与解析</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2021-02-24T11:45:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。  </p>
+        
+          <a class="article-more-a" href="/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-个人爬虫经验总结（一）- 前言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/22/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%20%E5%89%8D%E8%A8%80/">个人爬虫经验总结（一）- 前言</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/22/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%20%E5%89%8D%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2021-02-22T03:17:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从实习至现在，我做Java爬虫相关业务已将近3年。因近期公司的产品经理希望我可以向同事分享自己的爬虫经验。因此就分享前，在此整理自己的爬虫经验。</p>
+        
+          <a class="article-more-a" href="/2021/02/22/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%20%E5%89%8D%E8%A8%80/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/22/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%20%E5%89%8D%E8%A8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-一个简单的测试环境下的自动化部署方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -412,7 +580,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 lroyia
+    		&copy; 2021 lroyia
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -479,6 +647,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
@@ -487,7 +659,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

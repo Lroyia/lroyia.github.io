@@ -6,17 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.lroyia.top">
-  <title>Archives: 2020 | 深海路人 - lroyia</title>
+  <title>个人爬虫经验总结（二）- 请求与解析 | 深海路人 - lroyia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个死宅的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="深海路人 - lroyia">
-<meta property="og:url" content="https://blog.lroyia.top/archives/2020/index.html">
+  <meta name="description" content="前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人爬虫经验总结（二）- 请求与解析">
+<meta property="og:url" content="https://blog.lroyia.top/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="深海路人 - lroyia">
-<meta property="og:description" content="这是一个死宅的博客">
+<meta property="og:description" content="前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg">
+<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/XPath.jpg">
+<meta property="article:published_time" content="2021-02-24T11:45:57.000Z">
+<meta property="article:modified_time" content="2021-03-05T09:25:21.716Z">
 <meta property="article:author" content="lroyia">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
   
     <link rel="alternative" href="/atom.xml" title="深海路人 - lroyia" type="application/atom+xml">
   
@@ -159,148 +178,289 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-个人爬虫经验总结（二）- 请求与解析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      个人爬虫经验总结（二）- 请求与解析
+    </h1>
+  
+
+        
+        <a href="/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2021-02-24T11:45:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。  </p>
+<a id="more"></a>
+<h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><p>在爬虫中，我们遇到的传输协议基本上就只会有Http协议。既然我们要伪造浏览器客户端请求服务器获取数据，那么我们就需要先了解我们需要伪造的目标<code>http协议</code>的构成。  </p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg" alt="http协议构成"></p>
+<blockquote>
+<p>在平常的开发中，相信我们都接触过后台对接第三方应用接口的情况。因此这里我们不对如何发起Http请求进行阐述。我们只说明与平常请求第三方应用接口，爬虫需要的请求与一般第三方应用接口需要有什么不同。</p>
+</blockquote>
+<p>对于一些“卖”数据的网站而言，数据是网站的资金来源。他们绝对不会让开发者轻轻松松去请求他们的接口将数据全拿走。因此他们会对请求设定一些限制，从而鉴别服务器发起的请求和普通用户从浏览器发起的请求。而他们往往都是通过鉴别上图中<code>请求头中的实体头</code>来进行区分的。因而我们只需要伪造好<code>实体头</code>即可跳过网站的这些请求限制。</p>
+<p>通常我们需要伪造的请求头有如下这些：</p>
+<ul>
+<li><p>User-Agent<br>  User-Agent是浏览器自动生成的，用于标识用户的客户端类型与版本，这是最常用的一个请求头。</p>
+</li>
+<li><p>Referer<br>  Referer是浏览器自动生成的，用于标识该请求在访问到哪个页面发起的。这个标识通过用于做防盗链，防止第三方网站直接引用该网站的资源。同时，它也可以作为请求的队列的顺序标识来鉴别请求真伪</p>
+</li>
+<li><p>Cookie<br>  这个应该不用多说，就是通常用于进行网站用户登录标识鉴别（登录验证相关的内容会放在下一部分进行介绍）</p>
+</li>
+</ul>
+<p>在伪造客户端请求时，除了以上这些请求头，我们还要注意一些网站自定的一些请求头。比如说，JWT的x-token等。</p>
+<h2 id="如何找到我们需要的请求"><a href="#如何找到我们需要的请求" class="headerlink" title="如何找到我们需要的请求"></a>如何找到我们需要的请求</h2><blockquote>
+<p>我们要伪造请求，那么我们要先知道我们需要的请求是哪个。下面就来说一下常用的三个方法。</p>
+</blockquote>
+<h3 id="方法一、利用浏览器Network监听"><a href="#方法一、利用浏览器Network监听" class="headerlink" title="方法一、利用浏览器Network监听"></a>方法一、利用浏览器Network监听</h3><p>浏览器按F12，打开浏览器的开发者工具。其中有一个<code>Network</code>的标签页。这一个是浏览器自带的，用于监听当前页面的请求监听器。</p>
+<p>下面以找出<code>百度搜索</code>的请求为例，我们先在百度的搜索框输入我们要搜索的内容。然后按F12打开Network清空监听内容准备监听。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg" alt="network示例1"></p>
+<p>点击请求接口的触发器，在这个示例里，触发我们需要去找的<code>百度搜索请求</code>的触发器就是<code>百度一下</code>按钮，在点击百度一下后，浏览器就会发起搜索请求。列表中就会列出相关的请求信息。因为百度搜索是异步搜索，不是利用html的form表单进行提交跳转的搜索。因此我们可以点击XHR进行筛选。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg" alt="network示例2"></p>
+<blockquote>
+<p><code>XHR</code>指的是浏览器的内置对象<a href="https://www.w3school.com.cn/xml/xml_http.asp" target="_blank" rel="noopener">XMLHttpRequest</a>发起的请求</p>
+</blockquote>
+<p>通过查看请求详情中的请求参数，对比我们的输入的搜索内容，即可找到我们需要找的搜索接口。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg" alt="network示例3"></p>
+<blockquote>
+<p><code>Network</code>是十分方便简单的一个获取请求的手段，但这个方法也有一个比较致命的缺陷。那就是针对一些会诱发页面刷新的请求或者交互时，它会清空所有请求记录。这导致它无法捕捉到会刷新当前页面的form表单之类的请求。</p>
+</blockquote>
+<h3 id="方法二、阅读网页源码"><a href="#方法二、阅读网页源码" class="headerlink" title="方法二、阅读网页源码"></a>方法二、阅读网页源码</h3><p>对于网站的架构一般可以按页面渲染方式分为以下几类：</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg" alt="渲染架构分类"></p>
+<p>在上图中<code>服务页面接口一体型</code>这一类中，在开发中往往会将<code>JavaScript脚本</code>直接在页面上编写或直接进行外部静态引用。这些脚本通常是没有进行过<code>打包处理（去空格换行+代码混淆）</code>，因此可直接阅读。我们只需通过事件触发点（事件按钮），找到对应的JS函数，即可通过阅读JS代码知道其对应的接口以及请求参数与封装方式。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg" alt="示例1"></p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg" alt="示例2"></p>
+<h3 id="方法三、Wireshark本地流量包抓取分析"><a href="#方法三、Wireshark本地流量包抓取分析" class="headerlink" title="方法三、Wireshark本地流量包抓取分析"></a>方法三、Wireshark本地流量包抓取分析</h3><p>Wireshark（前称Ethereal）是一个网络封包分析软件。我们可以利用它，对本地机器的访问包进行抓取解包分析。</p>
+<h4 id="如何使用wireshak"><a href="#如何使用wireshak" class="headerlink" title="如何使用wireshak"></a>如何使用wireshak</h4><p>这里我们说下其简单使用，如果读者曾在网络安全课上学过，可选择直接跳过。</p>
+<p>1、打开软件后，点击双击当前用于访问网络的网络接口进行监听</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg" alt="wireshark示例1"></p>
+<p>2、打开触发请求前的网站页面，将其运行到待触发请求状态。待页面所有请求加载结束后，清空wireshark请求监听记录来准备监听目标请求。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg" alt="wireshark示例2"></p>
+<p>3、触发浏览器请求，输入筛选条件筛选抓包记录。在抓包记录中，找到我们需要的请求。</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg" alt="wireshark示例3"></p>
+<p>常用的筛选表达式有</p>
+<ul>
+<li><code>http,udp,tcp,tls</code> 等协议名称筛选</li>
+<li><code>http.request.uri</code> 请求资源路径筛选</li>
+<li><code>http.request.method</code> 请求方法筛选</li>
+<li><code>ip.src</code> 请求发起地址</li>
+<li><code>ip.dst</code> 请求目标地址</li>
+</ul>
+<p>4、右击请求记录，点击<code>跟踪流-http流</code>，即可找到其请求对应的响应信息</p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg" alt="wireshark示例5"><br><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg" alt="wireshark示例6"></p>
+<blockquote>
+<p>注意：当需要请求的目标使用的是https协议时,我们需要对其进行解密。https与http协议不同，https通过TLS协议（SSL协议是TLS协议的前身）进行了加密。我们需要将请求内容进行解密才可以看到明文。点击<a href="https://blog.csdn.net/wangyiyungw/article/details/82178339" target="_blank" rel="noopener">解密教程</a>查看解密教程，要注意的是，在文中的解密教程说到的配置SSL日志的首选项目录是<code>Protocols-SSL</code>是旧版的配置目录。在当前版本（目前我用的是3.4.3），这个版本没有SSL协议选项，只有TLS选项。因此我们设置这个目录时需要更改为<code>Protocols-TLS</code>下设置。<img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg" alt="wireshark示例7"></p>
+</blockquote>
+<h2 id="解析请求回来的数据"><a href="#解析请求回来的数据" class="headerlink" title="解析请求回来的数据"></a>解析请求回来的数据</h2><p>通常我们爬虫需要请求回来的都是以下这些类型的数据：</p>
+<ul>
+<li>JSON</li>
+<li>HTML</li>
+<li>XML</li>
+<li>图片，视频等文件流</li>
+</ul>
+<p>JSON和文件下载处理相信大家都很熟悉，所以这里我们只说说HTML和XML。  </p>
+<p>HTML是XML的一种，只是其有固定的xtd信息标准。HTML和XML都是树状标记语言，其处理方法都是相似的。在Java中，其对应的优秀解析包如下：</p>
+<p>HTML解析包Jsoup  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/org.jsoup/jsoup --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jsoup<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsoup<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.13.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>HTML解析包<code>Jsoup</code>  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/org.jsoup/jsoup --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jsoup<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsoup<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.13.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>```  <br><br>XML解析包`dom4j`<br><br>```xml<br><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/dom4j/dom4j --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>dom4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dom4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.6.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>```  <br><br>因为两者都是树状的标记语言，行为表现都十分类似因此其实际解析思路都是一致的，只是两种包的API名称不同而已。这里我们就用用得最多的`Jsoup`解析`HTML`来做思路总结。  <br><br>```html<br><span class="hljs-comment">&lt;!--示例html代码，假设我们现在要获取内容为test的p标签对象--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"p1"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p1c"</span> <span class="hljs-attr">data-va</span>=<span class="hljs-string">"va"</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"p2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>t<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>首先，当我们拿到一串完整的<code>HTML</code>代码串串时，我们首先要将其解析为一个文档对象(<code>Document</code>)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-comment">// 将HTML代码串转为一个Document</span><br>Document document = Jsoup.parse(<span class="hljs-string">"&lt;html&gt;&lt;body&gt;&lt;p id=\"p1\" class=\"p1c\" data-va=\"va\"&gt;test&lt;/p&gt;&lt;p id=\"p2\" class=\"p\"&gt;t&lt;/p&gt;&lt;body&gt;&lt;/html&gt;"</span>);<br>```  <br><br>然后，我们根据目标标签`（在Html中，每个标签被称为元素(Element)，而在XML中，每个标签被称为节点(Node))）`的特征去获取到我们的标签。<br><br>```java<br><span class="hljs-comment">// 根据位置顺序获取（获取自上而下第一个p标签）</span><br>Elements targets = document.getElementsByTag(<span class="hljs-string">"p"</span>);<br><span class="hljs-comment">// Elements是继承与ArrayList&lt;Element&gt;的类</span><br>Element target = targets.get(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// 根据id获取</span><br>target = document.getElementById(<span class="hljs-string">"p1"</span>);<br><br><span class="hljs-comment">// 根据类获取</span><br>targets = document.getElementsByClass(<span class="hljs-string">"p1c"</span>);<br>target = targets.get(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// 根据属性获取</span><br>targets = document.getElementsByAttribute(<span class="hljs-string">"data-va"</span>);<br>targets = document.getElementsByAttributeValue(<span class="hljs-string">"data-va"</span>, <span class="hljs-string">"va"</span>);<br>target = targets.get(<span class="hljs-number">0</span>);<br>        <br><span class="hljs-comment">// 根据CSS选择器获取</span><br>targets = document.select(<span class="hljs-string">"#p1"</span>);<br>targets = document.select(<span class="hljs-string">".p1c"</span>);<br>targets = document.select(<span class="hljs-string">"[data-va=va]"</span>);<br>target = targets.get(<span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+
+<p>假如需要查询target的子节点，可以将Element视为Document以上面的方式继续往下查。现在我们解析到节点后，进行数据提取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取id</span><br>System.out.println(target.id());<span class="hljs-comment">// p1</span><br>System.out.println(target.attr(<span class="hljs-string">"id"</span>));<span class="hljs-comment">// p1</span><br><span class="hljs-comment">// 获取类</span><br>System.out.println(target.className());<span class="hljs-comment">// p1c</span><br>System.out.println(target.attr(<span class="hljs-string">"class"</span>));<span class="hljs-comment">// p1c</span><br><span class="hljs-comment">// 获取属性</span><br>System.out.println(target.attr(<span class="hljs-string">"data-va"</span>));<span class="hljs-comment">// va</span><br>System.out.println(target.dataset().get(<span class="hljs-string">"va"</span>));<span class="hljs-comment">// va</span><br><span class="hljs-comment">// target.dataset() 对应前端document的dataset和JQuery的$('#p1').data()</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h3><p><code>XPath</code>是XML中的绝对路径表达方式。在请求结果固定，能保持一致时，可以考虑使用<code>XPath</code>来进行数据定位。<code>HtmlUnit</code>中就提供了<code>XPath</code>进行节点定位。但由于爬虫中很难说有每个请求回来的XML或HTML的绝对路径是一致的情况，而且浏览器中存在JS对请求回来的Html进行渲染修改的情况，因此<code>XPath</code>在爬虫中并不实用。但由于存在这个定位方式，所以姑且还是提一下。  </p>
+<p><img src="http://cloud.qiniu.lroyia.top/blog/img/XPath.jpg" alt="XPath"></p>
+<blockquote>
+<p>扩展阅读：<a href="https://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="noopener">XPath语法</a>  </p>
+</blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这一节总结了爬虫中<code>分析请求与解析数据</code>这两部分的个人经验。但认真有看朋友应该有发现，在聊到请求时，都是没有说到<code>验证</code>的情况。这里没有聊到验证这块，是因为验证这块比较重要，我打算将在下一篇文章单独聊这一块。因此，如果看到这里，我还没更新下一篇文章的朋友，敬请期待。  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你的赞赏~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://cloud.qiniu.lroyia.top/image/pay/alipay-small.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://cloud.qiniu.lroyia.top/image/pay/wechat-pay-small.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2020-09-11T07:41:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/">一个简单的测试环境下的自动化部署方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">自动化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://blog.lroyia.top/2021/02/24/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      
+        <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'e3a84a39fecb309f7292',
+        clientSecret: '32e430bc3cc2d1c5de0087b85df4438eb2fe2ef4',
+        repo: 'lroyia.github.io',
+        owner: 'lroyia',
+        admin: ["lroyia"],
+        id: '2021-02-24T19-45-57',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+      
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/26/idea-flutter/" class="archive-article-date">
-  	<time datetime="2020-05-26T09:18:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/22/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%20%E5%89%8D%E8%A8%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">个人爬虫经验总结（一）- 前言</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/26/idea-flutter/">IDEA搭建flutter开发环境的入坑记录</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/go-defer/" class="archive-article-date">
-  	<time datetime="2020-05-12T08:49:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/go-defer/">关于Golang中的defer关键字</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -323,8 +483,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
