@@ -6,36 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.lroyia.top">
-  <title>IDEA搭建flutter开发环境的入坑记录 | 深海路人 - lroyia</title>
+  <title>Archives: 2021/3 | 深海路人 - lroyia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="场景：笔者是一个JAVA Web应用的开发者，机缘巧合遇到一些可能会涉及APP开发的需求。因为本身对Google力推的flutter挺感兴趣。故笔者想着在闲时搭建一个flutter环境玩一下。但由于官方文档仅提供了Android Studio和VSCode的环境搭建说明，而笔者认为VSCode没有代码提示和包自动导入对新手入坑不友好，而多装一个Android Studio又对硬盘空间不太友好。故">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IDEA搭建flutter开发环境的入坑记录">
-<meta property="og:url" content="https://blog.lroyia.top/2020/05/26/idea-flutter/index.html">
+  <meta name="description" content="这是一个死宅的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="深海路人 - lroyia">
+<meta property="og:url" content="https://blog.lroyia.top/archives/2021/03/index.html">
 <meta property="og:site_name" content="深海路人 - lroyia">
-<meta property="og:description" content="场景：笔者是一个JAVA Web应用的开发者，机缘巧合遇到一些可能会涉及APP开发的需求。因为本身对Google力推的flutter挺感兴趣。故笔者想着在闲时搭建一个flutter环境玩一下。但由于官方文档仅提供了Android Studio和VSCode的环境搭建说明，而笔者认为VSCode没有代码提示和包自动导入对新手入坑不友好，而多装一个Android Studio又对硬盘空间不太友好。故">
+<meta property="og:description" content="这是一个死宅的博客">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/newproject.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/newdemo.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/androidsdk1.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/androidsdk2.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/androidsdk3.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/mobile.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/mobileDemo.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avd.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avd1.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avd2.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avd3.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avd4.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avdRunDemo.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/avdDemo.jpg">
-<meta property="article:published_time" content="2020-05-26T09:18:32.000Z">
-<meta property="article:modified_time" content="2021-02-28T03:48:36.636Z">
 <meta property="article:author" content="lroyia">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="flutter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://cloud.qiniu.lroyia.top/blog/img/newproject.jpg">
   
     <link rel="alternative" href="/atom.xml" title="深海路人 - lroyia" type="application/atom+xml">
   
@@ -178,243 +159,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-idea-flutter" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      IDEA搭建flutter开发环境的入坑记录
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/03/05/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%89%EF%BC%89-%20%E9%AA%8C%E8%AF%81/" class="archive-article-date">
+  	<time datetime="2021-03-05T09:32:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/03/05/%E4%B8%AA%E4%BA%BA%E7%88%AC%E8%99%AB%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%89%EF%BC%89-%20%E9%AA%8C%E8%AF%81/">个人爬虫经验总结（三）- 验证</a>
     </h1>
   
 
-        
-        <a href="/2020/05/26/idea-flutter/" class="archive-article-date">
-  	<time datetime="2020-05-26T09:18:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>场景：笔者是一个JAVA Web应用的开发者，机缘巧合遇到一些可能会涉及APP开发的需求。因为本身对Google力推的flutter挺感兴趣。故笔者想着在闲时搭建一个flutter环境玩一下。但由于官方文档仅提供了Android Studio和VSCode的环境搭建说明，而笔者认为VSCode没有代码提示和包自动导入对新手入坑不友好，而多装一个Android Studio又对硬盘空间不太友好。故笔者尝试使用IDEA搭建flutter的开发环境。<br>搭建环境：<br>flutter-window-1.17.1<br>IDEA 2020.1<br>Windows 10 家庭版</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="1、下载flutter-SDK"><a href="#1、下载flutter-SDK" class="headerlink" title="1、下载flutter SDK"></a>1、下载flutter SDK</h2><p>到<a href="https://flutter.cn/docs/get-started/install" target="_blank" rel="noopener">flutter中文网</a>下载flutter官方Sdk，虽然去<a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener">官方网站</a>下载和阅读文档应该是最准确的，但考虑到国情故不考虑。</p>
-<p>下载完成后解压SDK压缩包，找到想要的位置安装后配置环境变量。</p>
-<p>需要配置的环境变量有三个：flutter SDK的bin目录（用于执行flutter sdk的cli工具），PUB_HOSTED_URL（PUB依赖的HOST），FLUTTER_STORAGE_BASE_URL</p>
-<p>flutter SDK的bin配置到path（干了几年，配了几年的东西。）  </p>
-<p>PUB_HOSTED_URL和FLUTTER_STORAGE_BASE_URL需要配置系统到环境变量，即与path环境变量同级。因为flutter下载依赖时默认是到国外官方源下载。由于国情原因，我们需要通过修改环境变量来指定其到国内官方源下载依赖包。</p>
-<p>Windows下管理员权限执行命令行</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">setx PUB_HOSTED_URL "https://pub.flutter-io.cn" /m<br>setx FLUTTER_STORAGE_BASE_URL "https://storage.flutter-io.cn" /m<br></code></pre></td></tr></table></figure>
-
-<p>linux修改profile</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">export PUB_HOSTED_URL=https://pub.flutter-io.cn<br>export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn<br></code></pre></td></tr></table></figure>
-
-<h2 id="2、IDEA下安装插件"><a href="#2、IDEA下安装插件" class="headerlink" title="2、IDEA下安装插件"></a>2、IDEA下安装插件</h2><p>由于flutter本身是Dart语言的一个框架，因此我们需要到IDEA的插件市场下载安装Dart与flutter两个插件。</p>
-<h2 id="3、安装Android-SDK并配置"><a href="#3、安装Android-SDK并配置" class="headerlink" title="3、安装Android SDK并配置"></a>3、安装Android SDK并配置</h2><p>完成以上两步后可以打开命令行/终端运行</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flutter doctor<br></code></pre></td></tr></table></figure>
-
-<p>进行运行条件诊断。诊断输出中，打 ✔ 的是运行需要已达成的条件，打 X 的是运行需要未达成的条件，打 ? 的是可能需要但未达成的条件。</p>
-<p>在完成上两步后，如果你未在电脑上开发过安卓应用，不具备安卓开发环境的话。诊断报告中应该会表明必须安装Android SDK的。</p>
-<p>那么我们打开我们的IDEA，先使用插件创建一个flutter项目的demo项目。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/newproject.jpg" alt="新建flutter项目"></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/newdemo.jpg" alt="新建demo"></p>
-<p>初始化需要下载一些包，可能需要等几分钟时间。</p>
-<p>初始化项目后，打开项目，点击打开菜单的Tools-&gt;Android-&gt;SDK Manager</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/androidsdk1.jpg" alt="SDK安装1"></p>
-<blockquote>
-<p>注意：安装Android SDK完成前，AVD Manager子菜单并不可点。图片可点仅因为笔者已安装</p>
-</blockquote>
-<p>点击edit按钮选择安装SDK</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/androidsdk2.jpg" alt="SDK安装2"></p>
-<p>勾选所有SDK选项，安装所有，由于笔者已安装，所以不能勾选。选择想要的安装目录后点击下一步，等待下载安装完毕。<br><img src="http://cloud.qiniu.lroyia.top/blog/img/androidsdk3.jpg" alt="SDK安装3"></p>
-<blockquote>
-<p>SDK好几G的大小，目前国墙好像放送了这个下载链接，下载SDK并不需要翻墙。请耐心等待下载完毕。</p>
-</blockquote>
-<p>下载完Android SDK后，需要配置Android SDK的系统环境变量。由于IDEA的flutter插件实质上是调用开发者下载的flutterSDK的cli工具进行开发调试，那么我们就需要让flutterSDK找到Android SDK的路径。因而我们需要配置Android SDK的系统环境变量。</p>
-<p>Windows下管理员权限执行命令行</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">setx ANDROID_SDK_ROOT "D:\Android\Sdk" /m<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>笔者SDK安装在D:\Android\Sdk，请根据自己的安装路径进行修改</p>
-</blockquote>
-<p>linux修改profile</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">export ANDROID_SDK_ROOT=你的SDK目录<br></code></pre></td></tr></table></figure>
-
-<p>以上操作完成后需要重启IDEA，让IDEA重新打开一个终端刷新环境变量。</p>
-<h2 id="4、调试环境"><a href="#4、调试环境" class="headerlink" title="4、调试环境"></a>4、调试环境</h2><h3 id="4-1、真机篇"><a href="#4-1、真机篇" class="headerlink" title="4.1、真机篇"></a>4.1、真机篇</h3><p>打开手机的开发者模式，开启USB调试，手机USB连接电脑。Android SDK会检测手机并向手机发起调试授权申请，手机上点击同意即可。</p>
-<p>通过授权后，即可选中真机进行demo调试了</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/mobile.jpg" alt="真机调试"></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/mobileDemo.jpg" alt="真机调试1"></p>
-<h3 id="4-2、虚拟机（AVD）篇"><a href="#4-2、虚拟机（AVD）篇" class="headerlink" title="4.2、虚拟机（AVD）篇"></a>4.2、虚拟机（AVD）篇</h3><p>点击菜单Tools-&gt;Android-&gt;AVD Manager（需先安装完Android SDK）</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avd.jpg" alt="avd"></p>
-<p>选择自己想要的屏幕尺寸</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avd1.jpg" alt="avd1"></p>
-<p>选择AVD的安卓版本后点击下一步，完成创建</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avd2.jpg" alt="avd2"></p>
-<p>点击启动按钮，启动虚拟机后即可按Esc键关闭AVD管理界面</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avd3.jpg" alt="avd3"></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avd4.jpg" alt="avd4"></p>
-<p>待虚拟机启动完成后，即可点击运行愉快地跑demo了</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avdRunDemo.jpg" alt="avdDemo"></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/avdDemo.jpg" alt="avdDemo"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://blog.lroyia.top/2020/05/26/idea-flutter/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-      
-        <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css">
-
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: 'e3a84a39fecb309f7292',
-        clientSecret: '32e430bc3cc2d1c5de0087b85df4438eb2fe2ef4',
-        repo: 'lroyia.github.io',
-        owner: 'lroyia',
-        admin: ["lroyia"],
-        id: '2020-05-26T17-18-32',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-      
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/09/11/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一个简单的测试环境下的自动化部署方案
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/05/12/go-defer/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于Golang中的defer关键字</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -437,8 +239,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
