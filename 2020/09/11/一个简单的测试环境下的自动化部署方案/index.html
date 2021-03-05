@@ -15,21 +15,21 @@
 <meta property="og:site_name" content="深海路人 - lroyia">
 <meta property="og:description" content="笔者是公司是一个分前后端开发的公司。而笔者是一个普通的后端开发工程师。在和前端工程师协同开发时，为了给前端工程师提供接口，往往要将写好的代码交付并部署到测试环境。因而这导致笔者经常需要打包项目更新到测试环境。这种情况十分烦人，因而笔者想了这套简单的方案来解决这个问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/gitea-index.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/gitea-demo-repo.png">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/spring-initializr.png">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/demo-controller.png">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/gitea-clone.png">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/create-branch.png">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/gitea-index.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/gitea-demo-repo.png">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/spring-initializr.png">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/demo-controller.png">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/gitea-clone.png">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/create-branch.png">
 <meta property="article:published_time" content="2020-09-11T07:41:08.000Z">
-<meta property="article:modified_time" content="2021-02-28T03:48:36.637Z">
+<meta property="article:modified_time" content="2021-03-05T11:42:07.173Z">
 <meta property="article:author" content="lroyia">
 <meta property="article:tag" content="go">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="自动化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg">
+<meta name="twitter:image" content="https://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg">
   
     <link rel="alternative" href="/atom.xml" title="深海路人 - lroyia" type="application/atom+xml">
   
@@ -200,7 +200,7 @@
 <p>举例：<br>master 分支作为生产环境的构建版本<br>test 分支作为测试环境的构建版本<br>dev 分支作为日常开发（包含未过debug）的代码存储管理</p>
 </blockquote>
 <p>2、使用自动化构建工具，在不同环境下获取不同分支的代码进程构建运行</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg" alt="示意图"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/auto-build.jpg" alt="示意图"></p>
 <h2 id="笔者实例"><a href="#笔者实例" class="headerlink" title="笔者实例"></a>笔者实例</h2><p>1、使用开源的Gitea作为代码仓库管理</p>
 <blockquote>
 <p>由于大部分公司都不愿意将代码放至网上（即使是私有仓），因此这里使用开源的Gitea项目部署在测试环境上</p>
@@ -240,7 +240,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./gitea web<br></code></pre></td></tr></table></figure>
 
 <p>打开浏览器，访问服务器3000的端口访问<code>Gitea</code>页面</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/gitea-index.jpg" alt="Gitea首页"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/gitea-index.jpg" alt="Gitea首页"></p>
 <p>随意点击顶部bar上的任意按钮，即可进入初始化的install页面。按照自己的需要配置好后，在服务器上gitea的同意目录下就会多出一个custom目录。用于记录配置的app.ini文件就在该目录下的conf目录里。</p>
 <p>接着构建服务。<code>ctrl + c</code>取消刚刚运行的<code>gitea</code>进程，然后服务器运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/systemd/system/gitea.service<br></code></pre></td></tr></table></figure>
@@ -255,13 +255,13 @@
 <p>启动服务后，浏览器访问<code>Gitea</code>的页面，注册账号并登陆。</p>
 <p>以下操作为项目示例：</p>
 <p>点击界面右上角的<code>+</code>号，创建一个demo仓库</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/gitea-demo-repo.png" alt="创建仓库示例"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/gitea-demo-repo.png" alt="创建仓库示例"></p>
 <p>进入<a href="http://start.spring.io/" target="_blank" rel="noopener">http://start.spring.io/</a>创建一个springboot的demo项目</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/spring-initializr.png" alt="创建示例项目"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/spring-initializr.png" alt="创建示例项目"></p>
 <p>在demo项目中加入一个controller，使其返回一个<code>hello</code></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/demo-controller.png" alt="demo-controller"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/demo-controller.png" alt="demo-controller"></p>
 <p>在仓库首页点击按钮，复制克隆路径</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/gitea-clone.png" alt="demo-controller"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/gitea-clone.png" alt="demo-controller"></p>
 <p>命令行运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> http://192.168.6.11:3000/lroyia/springboot-example.git<br></code></pre></td></tr></table></figure>
 
@@ -270,7 +270,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add . <span class="hljs-comment"># 将当前目录下所有文件（没有被.ignore排除的文件）列入提交选项</span><br>git commit -m <span class="hljs-string">'init'</span> <span class="hljs-comment"># 将所有文件提交到本地仓库，提交消息问'init'</span><br>git push <span class="hljs-comment"># 将本地仓库的更改推送到远程仓库</span><br></code></pre></td></tr></table></figure>
 
 <p>回到浏览器的<code>gitea</code>页面，点击当前分支的下拉列表，输入新标签名，从当前分支的节点创建新分支(这里创建test分支和dev分支)</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/create-branch.png" alt="创建新分支"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/create-branch.png" alt="创建新分支"></p>
 <p>构建服务器上运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global credential.helper store<br></code></pre></td></tr></table></figure>
 
@@ -522,14 +522,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
@@ -539,6 +531,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">flutter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

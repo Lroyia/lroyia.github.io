@@ -15,27 +15,27 @@
 <meta property="og:site_name" content="深海路人 - lroyia">
 <meta property="og:description" content="前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg">
-<meta property="og:image" content="http://cloud.qiniu.lroyia.top/blog/img/XPath.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg">
+<meta property="og:image" content="https://cloud.qiniu.lroyia.top/blog/img/XPath.jpg">
 <meta property="article:published_time" content="2021-02-24T11:45:57.000Z">
-<meta property="article:modified_time" content="2021-03-05T10:53:57.447Z">
+<meta property="article:modified_time" content="2021-03-05T11:42:08.774Z">
 <meta property="article:author" content="lroyia">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
+<meta name="twitter:image" content="https://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg">
   
     <link rel="alternative" href="/atom.xml" title="深海路人 - lroyia" type="application/atom+xml">
   
@@ -201,7 +201,7 @@
         <p>前面说到爬虫本质就是用程序模拟浏览器访问网站来获取数据，那这一节我们就来说一下怎样去请求并解析成我们需要的数据。  </p>
 <a id="more"></a>
 <h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><p>在爬虫中，我们遇到的传输协议基本上就只会有Http协议。既然我们要伪造浏览器客户端请求服务器获取数据，那么我们就需要先了解我们需要伪造的目标<code>http协议</code>的构成。  </p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg" alt="http协议构成"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/http%E6%9E%84%E6%88%90.jpg" alt="http协议构成"></p>
 <blockquote>
 <p>在平常的开发中，相信我们都接触过后台对接第三方应用接口的情况。因此这里我们不对如何发起Http请求进行阐述。我们只说明与平常请求第三方应用接口，爬虫需要的请求与一般第三方应用接口需要有什么不同。</p>
 </blockquote>
@@ -221,30 +221,30 @@
 </blockquote>
 <h3 id="方法一、利用浏览器Network监听"><a href="#方法一、利用浏览器Network监听" class="headerlink" title="方法一、利用浏览器Network监听"></a>方法一、利用浏览器Network监听</h3><p>浏览器按F12，打开浏览器的开发者工具。其中有一个<code>Network</code>的标签页。这一个是浏览器自带的，用于监听当前页面的请求监听器。</p>
 <p>下面以找出<code>百度搜索</code>的请求为例，我们先在百度的搜索框输入我们要搜索的内容。然后按F12打开Network清空监听内容准备监听。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg" alt="network示例1"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/networkExp1.jpg" alt="network示例1"></p>
 <p>点击请求接口的触发器，在这个示例里，触发我们需要去找的<code>百度搜索请求</code>的触发器就是<code>百度一下</code>按钮，在点击百度一下后，浏览器就会发起搜索请求。列表中就会列出相关的请求信息。因为百度搜索是异步搜索，不是利用html的form表单进行提交跳转的搜索。因此我们可以点击XHR进行筛选。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg" alt="network示例2"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/networkExp2.jpg" alt="network示例2"></p>
 <blockquote>
 <p><code>XHR</code>指的是浏览器的内置对象<a href="https://www.w3school.com.cn/xml/xml_http.asp" target="_blank" rel="noopener">XMLHttpRequest</a>发起的请求</p>
 </blockquote>
 <p>通过查看请求详情中的请求参数，对比我们的输入的搜索内容，即可找到我们需要找的搜索接口。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg" alt="network示例3"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/networkExp3.jpg" alt="network示例3"></p>
 <blockquote>
 <p><code>Network</code>是十分方便简单的一个获取请求的手段，但这个方法也有一个比较致命的缺陷。那就是针对一些会诱发页面刷新的请求或者交互时，它会清空所有请求记录。这导致它无法捕捉到会刷新当前页面的form表单之类的请求。</p>
 </blockquote>
 <h3 id="方法二、阅读网页源码"><a href="#方法二、阅读网页源码" class="headerlink" title="方法二、阅读网页源码"></a>方法二、阅读网页源码</h3><p>对于网站的架构一般可以按页面渲染方式分为以下几类：</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg" alt="渲染架构分类"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB.jpg" alt="渲染架构分类"></p>
 <p>在上图中<code>服务页面接口一体型</code>这一类中，在开发中往往会将<code>JavaScript脚本</code>直接在页面上编写或直接进行外部静态引用。这些脚本通常是没有进行过<code>打包处理（去空格换行+代码混淆）</code>，因此可直接阅读。我们只需通过事件触发点（事件按钮），找到对应的JS函数，即可通过阅读JS代码知道其对应的接口以及请求参数与封装方式。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg" alt="示例1"></p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg" alt="示例2"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/jsEvent1.jpg" alt="示例1"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/jsEvent2.jpg" alt="示例2"></p>
 <h3 id="方法三、Wireshark本地流量包抓取分析"><a href="#方法三、Wireshark本地流量包抓取分析" class="headerlink" title="方法三、Wireshark本地流量包抓取分析"></a>方法三、Wireshark本地流量包抓取分析</h3><p>Wireshark（前称Ethereal）是一个网络封包分析软件。我们可以利用它，对本地机器的访问包进行抓取解包分析。</p>
 <h4 id="如何使用wireshak"><a href="#如何使用wireshak" class="headerlink" title="如何使用wireshak"></a>如何使用wireshak</h4><p>这里我们说下其简单使用，如果读者曾在网络安全课上学过，可选择直接跳过。</p>
 <p>1、打开软件后，点击双击当前用于访问网络的网络接口进行监听</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg" alt="wireshark示例1"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark1.jpg" alt="wireshark示例1"></p>
 <p>2、打开触发请求前的网站页面，将其运行到待触发请求状态。待页面所有请求加载结束后，清空wireshark请求监听记录来准备监听目标请求。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg" alt="wireshark示例2"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark2.jpg" alt="wireshark示例2"></p>
 <p>3、触发浏览器请求，输入筛选条件筛选抓包记录。在抓包记录中，找到我们需要的请求。</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg" alt="wireshark示例3"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark3.jpg" alt="wireshark示例3"></p>
 <p>常用的筛选表达式有</p>
 <ul>
 <li><code>http,udp,tcp,tls</code> 等协议名称筛选</li>
@@ -254,9 +254,9 @@
 <li><code>ip.dst</code> 请求目标地址</li>
 </ul>
 <p>4、右击请求记录，点击<code>跟踪流-http流</code>，即可找到其请求对应的响应信息</p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg" alt="wireshark示例5"><br><img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg" alt="wireshark示例6"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark5.jpg" alt="wireshark示例5"><br><img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark6.jpg" alt="wireshark示例6"></p>
 <blockquote>
-<p>注意：当需要请求的目标使用的是https协议时,我们需要对其进行解密。https与http协议不同，https通过TLS协议（SSL协议是TLS协议的前身）进行了加密。我们需要将请求内容进行解密才可以看到明文。点击<a href="https://blog.csdn.net/wangyiyungw/article/details/82178339" target="_blank" rel="noopener">解密教程</a>查看解密教程，要注意的是，在文中的解密教程说到的配置SSL日志的首选项目录是<code>Protocols-SSL</code>是旧版的配置目录。在当前版本（目前我用的是3.4.3），这个版本没有SSL协议选项，只有TLS选项。因此我们设置这个目录时需要更改为<code>Protocols-TLS</code>下设置。<img src="http://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg" alt="wireshark示例7"></p>
+<p>注意：当需要请求的目标使用的是https协议时,我们需要对其进行解密。https与http协议不同，https通过TLS协议（SSL协议是TLS协议的前身）进行了加密。我们需要将请求内容进行解密才可以看到明文。点击<a href="https://blog.csdn.net/wangyiyungw/article/details/82178339" target="_blank" rel="noopener">解密教程</a>查看解密教程，要注意的是，在文中的解密教程说到的配置SSL日志的首选项目录是<code>Protocols-SSL</code>是旧版的配置目录。在当前版本（目前我用的是3.4.3），这个版本没有SSL协议选项，只有TLS选项。因此我们设置这个目录时需要更改为<code>Protocols-TLS</code>下设置。<img src="https://cloud.qiniu.lroyia.top/blog/img/wireshark7.jpg" alt="wireshark示例7"></p>
 </blockquote>
 <h2 id="解析请求回来的数据"><a href="#解析请求回来的数据" class="headerlink" title="解析请求回来的数据"></a>解析请求回来的数据</h2><p>通常我们爬虫需要请求回来的都是以下这些类型的数据：</p>
 <ul>
@@ -280,7 +280,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取id</span><br>System.out.println(target.id());<span class="hljs-comment">// p1</span><br>System.out.println(target.attr(<span class="hljs-string">"id"</span>));<span class="hljs-comment">// p1</span><br><span class="hljs-comment">// 获取类</span><br>System.out.println(target.className());<span class="hljs-comment">// p1c</span><br>System.out.println(target.attr(<span class="hljs-string">"class"</span>));<span class="hljs-comment">// p1c</span><br><span class="hljs-comment">// 获取属性</span><br>System.out.println(target.attr(<span class="hljs-string">"data-va"</span>));<span class="hljs-comment">// va</span><br>System.out.println(target.dataset().get(<span class="hljs-string">"va"</span>));<span class="hljs-comment">// va</span><br><span class="hljs-comment">// target.dataset() 对应前端document的dataset和JQuery的$('#p1').data()</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h3><p><code>XPath</code>是XML中的绝对路径表达方式。在请求结果固定，能保持一致时，可以考虑使用<code>XPath</code>来进行数据定位。<code>HtmlUnit</code>中就提供了<code>XPath</code>进行节点定位。但由于爬虫中很难说有每个请求回来的XML或HTML的绝对路径是一致的情况，而且浏览器中存在JS对请求回来的Html进行渲染修改的情况，因此<code>XPath</code>在爬虫中并不实用。但由于存在这个定位方式，所以姑且还是提一下。  </p>
-<p><img src="http://cloud.qiniu.lroyia.top/blog/img/XPath.jpg" alt="XPath"></p>
+<p><img src="https://cloud.qiniu.lroyia.top/blog/img/XPath.jpg" alt="XPath"></p>
 <blockquote>
 <p>扩展阅读：<a href="https://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="noopener">XPath语法</a>  </p>
 </blockquote>
@@ -515,14 +515,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
@@ -532,6 +524,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">flutter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
