@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.lroyia.top">
-  <title>Tag: go | 深海路人 - lroyia</title>
+  <title>一次测试环境下的依赖冲突问题处理 | 深海路人 - lroyia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个死宅的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="深海路人 - lroyia">
-<meta property="og:url" content="https://blog.lroyia.top/tags/go/index.html">
+  <meta name="description" content="最近我在公司负责古董项目的升级改造。我写了一个用上了RSA加密的登录功能，功能中使用到了apache的common-codec包中的Base64，写完部署调试后，出现了org.apache.commons.codec.binary.Base64类的NoSuchMethodError。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次测试环境下的依赖冲突问题处理">
+<meta property="og:url" content="https://blog.lroyia.top/2021/08/11/dependencyConflict/index.html">
 <meta property="og:site_name" content="深海路人 - lroyia">
-<meta property="og:description" content="这是一个死宅的博客">
+<meta property="og:description" content="最近我在公司负责古董项目的升级改造。我写了一个用上了RSA加密的登录功能，功能中使用到了apache的common-codec包中的Base64，写完部署调试后，出现了org.apache.commons.codec.binary.Base64类的NoSuchMethodError。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.lroyia.top/image/Base64NoSuchMethodError.png">
+<meta property="og:image" content="https://blog.lroyia.top/image/javaverbose.jpg">
+<meta property="og:image" content="https://blog.lroyia.top/image/catalinaverbose.jpg">
+<meta property="og:image" content="https://blog.lroyia.top/image/tomcatexcejava.jpg">
+<meta property="og:image" content="https://blog.lroyia.top/image/jvmload.png">
+<meta property="article:published_time" content="2021-08-11T07:58:44.000Z">
+<meta property="article:modified_time" content="2021-08-11T08:44:43.007Z">
 <meta property="article:author" content="lroyia">
+<meta property="article:tag" content="java, maven">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.lroyia.top/image/Base64NoSuchMethodError.png">
   
     <link rel="alternative" href="/atom.xml" title="深海路人 - lroyia" type="application/atom+xml">
   
@@ -159,106 +168,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-dependencyConflict" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/goauto/" class="archive-article-date">
-  	<time datetime="2020-09-11T07:41:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/goauto/">一个简单的测试环境下的自动化部署方案</a>
+    <h1 class="article-title" itemprop="name">
+      一次测试环境下的依赖冲突问题处理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/08/11/dependencyConflict/" class="archive-article-date">
+  	<time datetime="2021-08-11T07:58:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近我在公司负责古董项目的升级改造。我写了一个用上了RSA加密的登录功能，功能中使用到了apache的<code>common-codec</code>包中的Base64，写完部署调试后，出现了<code>org.apache.commons.codec.binary.Base64</code>类的<code>NoSuchMethodError</code>。  </p>
+<p><img src="/image/Base64NoSuchMethodError.png" alt="NoSuchMethodError"></p>
+<a id="more"></a>
+
+<p>于是，我使用了<code>Maven Helper</code>的依赖图以及 <code>mvn dependency:tree</code>等方式，将<code>common-codec</code>包去重留下最新的版本并重新部署到测试环境。然而上述问题并没有得到解决。</p>
+<p>好在，运气不错。我在<code>Stack Overflow</code>那里找到了思路，经过一番折腾后，最终把问题解决了。以下是解决过程。</p>
+<h2 id="问题解决分析过程"><a href="#问题解决分析过程" class="headerlink" title="问题解决分析过程"></a>问题解决分析过程</h2><h3 id="1、思路来源"><a href="#1、思路来源" class="headerlink" title="1、思路来源"></a>1、思路来源</h3><p><a href="https://stackoverflow.com/questions/35186/how-do-i-fix-a-nosuchmethoderror" target="_blank" rel="noopener">https://stackoverflow.com/questions/35186/how-do-i-fix-a-nosuchmethoderror</a></p>
+<h3 id="2、原因分析"><a href="#2、原因分析" class="headerlink" title="2、原因分析"></a>2、原因分析</h3><ol>
+<li>上述报错图中我们可以看到报的是<code>NoSuchMethodError</code>，既然能通过编译，那必然是发生了多个类被引用的冲突。</li>
+<li>上述已通过<code>Maven Helper</code>的依赖图以及 <code>mvn dependency:tree</code>将版本问题排除了，那么就剩下的是不同jar包的同类路径冲突了。</li>
+</ol>
+<h3 id="3、解决思路"><a href="#3、解决思路" class="headerlink" title="3、解决思路"></a>3、解决思路</h3><p>要找出<code>org.apache.commons.codec.binary.Base64</code>类实际加载自哪个jar包，我们可以通过<code>java -verbose:class &lt;other args&gt;</code>来输出<code>JVM</code>类加载过程来进行查询判断。</p>
+<p><img src="/image/javaverbose.jpg" alt="java verbose"></p>
+<h3 id="4、解决过程"><a href="#4、解决过程" class="headerlink" title="4、解决过程"></a>4、解决过程</h3><p>1、修改<code>catalina.bat</code>，增加<code>-verbose</code>参数</p>
+<p><img src="/image/catalinaverbose.jpg" alt="JAVA_OPS"></p>
+<p>2、修改<code>catalina.bat</code>，使tomcat控制台输出内容全部输出到一个文件中</p>
+<p>于<code>catalina.bat</code>文件的末尾，在java的执行语句末尾均加上  </p>
+<p><code>&gt;&gt; %CATALINA_BASE%\logs\catalina.out</code></p>
+<p><img src="/image/tomcatexcejava.jpg" alt="EXCEJAVA"></p>
+<p>3、运行<code>catalina.bat start</code>命令，运行tomcat，当tomcat完全运行后，关闭tomcat。打开输出文件，搜索冲突的类，即可找到冲突的jar包，然后在<code>pom.xml</code>中排除掉即可</p>
+<p><img src="/image/jvmload.png" alt="jvmloaded"></p>
+<blockquote>
+<p>同理，在linux中，根据<code>shell</code>的语法去修改<code>catalina.sh</code>即可。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">自动化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java, maven</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://blog.lroyia.top/2021/08/11/dependencyConflict/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      
+        <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'e3a84a39fecb309f7292',
+        clientSecret: '32e430bc3cc2d1c5de0087b85df4438eb2fe2ef4',
+        repo: 'lroyia.github.io',
+        owner: 'lroyia',
+        admin: ["lroyia"],
+        id: '2021-08-11T15-58-44',
+        proxy:'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+      
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/go-defer/" class="archive-article-date">
-  	<time datetime="2020-05-12T08:49:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/05/splider3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">个人爬虫经验总结（三）验证</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/go-defer/">关于Golang中的defer关键字</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -281,9 +376,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
